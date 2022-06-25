@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "875954583146",
+    "project_id": "test-2055",
+    "storage_bucket": "test-2055.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875954583146:android:a18d6b481c313443b23c13",
+        "android_client_info": {
+          "package_name": "com.t4ulabs.bani_bayram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875954583146-an632dosa30jilbu16gsmdpk87opi2k6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDsEwyfwSBVx7eWCdWjLcNXHybsOXPhQ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875954583146-an632dosa30jilbu16gsmdpk87opi2k6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
