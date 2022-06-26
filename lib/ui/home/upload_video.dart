@@ -19,19 +19,26 @@ class UploadVideoScreen extends StatelessWidget {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 50),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 50),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              TextField(),
-              SizedBox(height: 20),
-              TextField(),
-              SizedBox(height: 20),
+              const Align(alignment: Alignment.centerLeft, child: Text('Titre')),
+              const TextField(),
+              const SizedBox(height: 20),
+              const Align(
+                  alignment: Alignment.centerLeft, child: Text('Description')),
+              TextField(
+                minLines: 3,
+                maxLines: 5,
+              ),
+              const SizedBox(height: 20),
               SizedBox(
                   height: 50,
                   width: 150,
-                  child: ElevatedButton(onPressed: () {}, child: Text('Upload')))
+                  child:
+                      ElevatedButton(onPressed: () {}, child: const Text('Upload')))
             ],
           ),
         ),

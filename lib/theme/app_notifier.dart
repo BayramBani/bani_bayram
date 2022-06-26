@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'app_theme.dart';
-import 'dart:developer' as dev;
+//import 'dart:developer' as dev;
 
 class AppNotifier extends ChangeNotifier {
   updateTheme(ThemeType themeType) {
-    dev.log('AppNotifier.updateTheme($themeType)');
+    //dev.log('AppNotifier.updateTheme($themeType)');
     _changeTheme(themeType);
     notifyListeners();
 
@@ -12,7 +12,7 @@ class AppNotifier extends ChangeNotifier {
   }
 
   void _changeTheme(ThemeType themeType) {
-    dev.log('AppNotifier._changeTheme($themeType)');
+    //dev.log('AppNotifier._changeTheme($themeType)');
     AppTheme.themeType = themeType;
     AppTheme.theme = AppTheme.getTheme(themeType: themeType);
   }

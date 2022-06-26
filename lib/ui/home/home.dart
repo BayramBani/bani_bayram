@@ -1,8 +1,10 @@
 import 'package:bani_bayram/ui/home/upload_video.dart';
+import 'package:bani_bayram/widgets/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'dart:developer' as dev;
+//import 'dart:developer' as dev;
 
+import '../../controllers/auth_controller.dart';
 import '../../images.dart';
 import '../../theme/app_theme.dart';
 
@@ -14,6 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+  late AuthenticationController authController;
   int currentIndex = 0;
   late TabController tabController;
 
@@ -29,6 +32,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   void initState() {
     // TODO: implement initState
     super.initState();
+    authController = AuthenticationController();
     tabController = TabController(length: 5, initialIndex: 0, vsync: this);
     tabController.addListener(() {
       currentIndex = tabController.index;
@@ -51,33 +55,43 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: TabBarView(
+    return WillPopScope(
+      onWillPop: () async {
+        myAlertDialog(
+          context: context,
+          message: 'Se déconnecter ?',
+          onAccept: () => authController.signOut(context),
+        );
+        return true;
+      },
+      child: Scaffold(
+        body: Column(
+          children: [
+            Expanded(
+              child: TabBarView(
+                  controller: tabController,
+                  children: navItems.map((navItem) => navItem.screen).toList()),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: TabBar(
                 controller: tabController,
-                children: navItems.map((navItem) => navItem.screen).toList()),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: TabBar(
-              controller: tabController,
-              indicator: BoxDecoration(
-                border: Border(
-                  top: BorderSide(
-                    color: AppTheme.mainColor,
-                    width: 3.0,
-                    style: BorderStyle.solid,
+                indicator: BoxDecoration(
+                  border: Border(
+                    top: BorderSide(
+                      color: AppTheme.mainColor,
+                      width: 3.0,
+                      style: BorderStyle.solid,
+                    ),
                   ),
                 ),
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicatorColor: AppTheme.mainColor,
+                tabs: buildTab(),
               ),
-              indicatorSize: TabBarIndicatorSize.tab,
-              indicatorColor: AppTheme.mainColor,
-              tabs: buildTab(),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -90,7 +104,6 @@ class NavItem {
 
   NavItem(this.title, this.icon, this.screen);
 }
-
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -114,7 +127,5 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
-
   }
 }
-

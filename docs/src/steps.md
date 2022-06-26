@@ -13,11 +13,3 @@ flutter pub add firebase_core
 dart pub global activate flutterfire_cli
 flutterfire configure
 ````
-
-## FlutterFire UI
-
-````shell
-flutter pub add flutterfire_ui
-flutter pub add firebase_auth
-
-````
